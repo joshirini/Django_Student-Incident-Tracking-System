@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <style>
+        body {
+            font: 400 15px Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+            line-height: 1.8;
+            color: #818181;
+        }
+        h2 {
+            font-size: 24px;
+            color: #000000;
+            font-weight: 100;
+            margin-bottom: 30px;
+            font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+        }
+        h4 {
+            font-size: 19px;
+            line-height: 1.375em;
+            color: #303030;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+        .jumbotron {
+            background-color: transparent;
+            color: #000;
+            padding: 20px 20px;
+            font-family: font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+        }
+        .container-fluid {
+            padding: 8px 50px;
+        }
+        .container-down {
+            padding: 50px 50px;
+        }
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            margin-bottom: 10px;
+        }
+        .carousel-indicators li {
+            border-color: #1E90FF;
+        }
+        .carousel-indicators li.active {
+            background-color: #1E90FF;
+        }
+        .item h4 {
+            font-size: 19px;
+            line-height: 1.375em;
+            font-weight: 400;
+            font-style: italic;
+            margin: 70px 0;
+        }
+        .item span {
+            font-style: normal;
+        }
+        .panel {
+            border: 1px solid #000000;
+            border-radius:0 !important;
+            transition: box-shadow 0.5s;
+        }
+        .panel:hover {
+            box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+        }
+        .panel-footer .btn:hover {
+            border: 1px solid #000000;
+            background-color: #fff !important;
+            color: #000000;
+        }
+        .panel-footer h3 {
+            font-size: 32px;
+        }
+        .panel-footer h4 {
+            color: #aaa;
+            font-size: 14px;
+        }
+        .panel-footer .btn {
+            margin: 15px 0;
+            background-color: #000000;
+            color: #fff;
+        }
+        .navbar {
+            margin-bottom: 0;
+            background-color: #000000;
+            z-index: 9999;
+            border: 0;
+            font-size: 16px !important;
+            line-height: 1.42857143 !important;
+            letter-spacing: 3px;
+            border-radius: 20px;
+            font-family: font-family: Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif;
+        }
+        .navbar li a, .navbar .navbar-brand {
+            color: #fff !important;
+        }
+        .navbar-nav li a:hover, .navbar-nav li.active a {
+            color: #000000 !important;
+            background-color: #fff !important;
+        }
+        .navbar-default .navbar-toggle {
+            border-color: transparent;
+            color: #fff !important;
+        }
+        footer .glyphicon {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #000000;
+        }
+        @keyframes slide {
+            0% {
+                opacity: 0;
+                transform: translateY(70%);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0%);
+            }
+        }
+        @-webkit-keyframes slide {
+            0% {
+                opacity: 0;
+                -webkit-transform: translateY(70%);
+            }
+            100% {
+                opacity: 1;
+                -webkit-transform: translateY(0%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand">EDUCATOR</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="{% url 'ed4all:educator_home' %}">HOME</a></li>
+            <li class="active"><a href="{% url 'ed4all:educator_incident_list' %}">INCIDENTS</a></li>
+            <li><a href="{% url 'ed4all:educator_student_list' %}">STUDENTS</a></li>
+            <li><a href="{% url 'index' %}">LOG OUT</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="jumbotron text-center">
+    <h1>My Profile</h1>
+</div>
+<div class="container container-fluid">
+    <div class="row"><br></div>
+    <div class="col-md-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="text-center">{{student.studentfname}} {{student.studentlname}}</h3>
+            </div>
+            <div class="panel-body">
+                <div class="box box-info">
+                    <div class="box-body">
+                        <div class="clearfix"></div>
+                        <b>Basic Profile</b>
+                        <hr style="margin:5px 0 5px 0;">
+                        <div class="col-sm-5 col-xs-6 tital " >First Name:</div>
+                        <div class="col-sm-7 col-xs-6 ">{{student.studentfname}}</div>
+                        <div class="clearfix"></div>
+                        <div class="bot-border"></div>
+
+                        <div class="col-sm-5 col-xs-6 tital " >Last Name:</div>
+                        <div class="col-sm-7"> {{student.studentlname}}</div>
+                        <div class="clearfix"></div>
+                        <div class="bot-border"></div>
+
+                        <div class="col-sm-5 col-xs-6 tital " >Age</div>
+                        <div class="col-sm-7">{{student.studentage}}</div>
+                        <div class="clearfix"></div>
+                        <div class="bot-border"></div>
+
+                        <div class="col-sm-5 col-xs-6 tital " >Date Of Birth:</div>
+                        <div class="col-sm-7">{{student.studentdob}}</div>
+
+                        <div class="clearfix"></div>
+                        <div class="bot-border"></div>
+                        <div class="col-sm-5 col-xs-6 tital " >Address:</div>
+                        <div class="col-sm-7">{{student.street}} {{student.city}} {{student.zip}}</div>
+
+                        <div class="clearfix"></div>
+                        <div class="bot-border"></div>
+                        <div class="col-sm-5 col-xs-6 tital " >Program:</div>
+                        <div class="col-sm-7">{{student.program}}</div>
+
+                        <div class="clearfix"></div>
+                        <div class="bot-border"></div>
+                        <div class="col-sm-5 col-xs-6 tital " >TrackRep:</div>
+                        <div class="col-sm-7">{{ trackrep.studentfname}}  {{ trackrep.studentlname}}</div>
+
+                        <div class="clearfix"></div>
+                        <div class="bot-border"></div>
+                        <div class="col-sm-5 col-xs-6 tital " >International Student:</div>
+                        <div class="col-sm-7">{% ifequal student.studenttype "international" %}
+                            yes
+                            {% else %}
+                            no
+                            {% endifequal %}
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <b>Academic Profile</b>
+                        <hr style="margin:5px 0 5px 0;">
+                        {% for profile in profile %}
+                        <ul>
+                            <li>
+                                <ul> {{profile.category}} {{profile.label}} {{profile.content}} </ul>
+                            </li>
+                        </ul>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="container-fluid text-center">
+</footer>
+
+</body>
+</html>

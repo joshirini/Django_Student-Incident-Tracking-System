@@ -1,0 +1,78 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+    }
+
+    /* Add a gray background color and some padding to the footer */
+	.flex-container {
+	    display: -webkit-flex;
+	    display: flex;
+	    -webkit-flex-flow: row wrap;
+	    flex-flow: row wrap;
+	    text-align: center;
+	}
+
+	.flex-container > * {
+	    padding: 15px;
+	    -webkit-flex: 1 100%;
+	    flex: 1 100%;
+	}
+
+	.article {
+	    text-align: center;
+	}
+
+</style>
+</head>
+<body>
+  <div class="container-fluid bg-3 text-center">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" href="{% url 'home' %}">Materials Translation System</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'document:doc_new' %}">Upload Document</a></li>
+        <li><a href="{% url 'home' %}">My Tasks</a></li>
+        <li><a href="{% url 'document:home' %}">View Documents</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'home' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+</div>
+<br>
+<br>
+<div id="wrapper">
+    	<div id="content">
+      	  {% block content %}{% endblock %}
+    	</div>
+	  </div><!-- wrapper -->
+<head>
+    <title>Team Education 3</title>
+    <link href="{% static 'css/style.css' %}" media="all" rel="stylesheet" />
+</head>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+
+
+{% block title %}Document List{% endblock %}
+
+{% block content %}
+
+<h2> Existing Incidents </h2>
+<br>
+
+<ul>
+    {% for incident in incidents %}
+    <li>{{ incident.incidentid }} {{ incident.incidenttype }} {{ incident.location }}
+    <a href="{% url 'ed4all:incident_view' incident.incidentid %}">View Incidents</a>
+    <a href="{% url 'ed4all:incident_update' incident.incidentid %}">Update Incidents</a>
+    <a href="{% url 'ed4all:incident_delete' incident.incidentid %}">Delete Incidents</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'ed4all:incident_create' %}">Report Incidents</a>
+{% endblock %}

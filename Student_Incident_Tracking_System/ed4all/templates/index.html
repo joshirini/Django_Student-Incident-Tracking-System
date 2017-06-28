@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>login</title>
+    {% load static %}
+<link rel="stylesheet" href="{% static 'ed4all/login/css/login.css' %}" type="text/css" media="all" />
+<script type="text/javascript" src="{% static 'ed4all/login/js/jQuery1.7.js' %}"></script>
+<script type="text/javascript" src="{% static 'ed4all/login/js/jquery-1.8.2.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'ed4all/login/js/jquery1.42.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'ed4all/login/js/jquery.SuperSlide.js' %}"></script>
+<script type="text/javascript" src="{% static 'ed4all/login/js/Validform_v5.3.2_min.js' %}"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var $tab_li = $('#tab ul li');
+	$tab_li.hover(function(){
+		$(this).addClass('selected').siblings().removeClass('selected');
+		var index = $tab_li.index(this);
+		$('div.tab_box > div').eq(index).show().siblings().hide();
+	});
+});
+</script>
+
+<script type="text/javascript">
+$(function(){
+	$(".screenbg ul li").each(function(){
+		$(this).css("opacity","0");
+	});
+	$(".screenbg ul li:first").css("opacity","1");
+	var index = 0;
+	var t;
+	var li = $(".screenbg ul li");
+	var number = li.size();
+	function change(index){
+		li.css("visibility","visible");
+		li.eq(index).siblings().animate({opacity:0},3000);
+		li.eq(index).animate({opacity:1},3000);
+	}
+	function show(){
+		index = index + 1;
+		if(index<=number-1){
+			change(index);
+		}else{
+			index = 0;
+			change(index);
+		}
+	}
+	t = setInterval(show,8000);
+	//imgwidth
+	var width = $(window).width();
+	$(".screenbg ul img").css("width",width+"px");
+});
+</script>
+</head>
+
+<body>
+<div id="tab">
+  <ul class="tab_menu">
+    <li class="selected">Student Login</li>
+    <li>Educator Login</li>
+    <li>Counselor Login</li>
+  </ul>
+  <div class="tab_box">
+
+    <!-- studentlogin start -->
+    <div>
+      <div class="stu_error_box"></div>
+      <form action="{% url 'ed4all:student_home' %}" method="post" class="stu_login_error">
+          {% csrf_token %}
+        <div id="sid">
+          <label>StudentId：</label>
+          <input type="text" id="stu_username_hide" name="sid" value="studentid" nullmsg="not null！" datatype="s6-18" errormsg="6~18！"/>
+          <!--ajaxurl="demo/valid.jsp"-->
+        </div>
+        <div id="password">
+          <label>Password：</label>
+          <input type="password" id="stu_password_hide" name="spwd" value="studentpassword" nullmsg="not null" datatype="*6-16" errormsg="6-16！"/>
+        </div>
+        <div id="code">
+          <label>Captcha：</label>
+          <input type="text" id="stu_code_hide" name="code"  value="input" nullmsg="not null！" datatype="*4-4" errormsg="4 digit！"/>
+          <img src="{% static 'ed4all/login/images/captcha.jpg' %}" title="change" alt="picture"/> </div>
+        <div id="remember">
+          <input type="checkbox" name="remember">
+          <label>remember password</label>
+        </div>
+        <div id="login">
+          <button type="submit">login</button>
+        </div>
+
+      </form>
+    </div>
+   <!-- -->
+   <!-- faculty login-->
+    <div class="hide">
+     <div class="tea_error_box"></div>
+      <form action="{% url 'ed4all:educator_home' %}" method="post" class="tea_login_error"> {% csrf_token %}
+        <div id="eid">
+          <label>EducatorId：</label>
+          <input type="text" id="tea_username_hide" name="eid" value="educatorid" nullmsg="not null！" datatype="s6-18" errormsg="6~18digit！" sucmsg="passed！"/>
+          <!--ajaxurl="demo/valid.jsp"--> 
+        </div>
+        <div id="epwd">
+          <label>Password：</label>
+          <input type="password" id="tea_password_hide" name="epwd" value="educatorpassword" nullmsg="notnull！" datatype="*6-16" errormsg="6~16！" sucmsg="pass！"/>
+        </div>
+        <div id="code">
+          <label>Captcha：</label>
+          <input type="text" id="tea_code_hide" name="code"  value="input" nullmsg="notnull！" datatype="*4-4" errormsg="4digit！" sucmsg="passed！"/>
+          <img src="{% static 'ed4all/login/images/captcha.jpg' %}" title="change" alt="picture"/> </div>
+        <div id="remember">
+          <input type="checkbox" name="remember">
+          <label>remember password</label>
+        </div>
+        <div id="login">
+          <button type="submit">login</button>
+        </div>
+      </form>
+    </div>
+     <!-- -->
+     <!-- counselor login -->
+    <div class="hide">
+    <div class="sec_error_box"></div>
+      <form action="{% url 'ed4all:counselor_home' %}" method="post" class="sec_login_error">
+          {% csrf_token %}
+        <div id="cid">
+          <label>CounselorId：</label>
+          <input type="text" id="sec_username_hide" name="cid" value="counselorid" nullmsg="notnull" datatype="s6-18" errormsg="6-18digit！"/>
+          <!--ajaxurl="demo/valid.jsp"--> 
+        </div>
+        <div id="cpwd">
+          <label>Password：</label>
+          <input type="password" id="sec_password_hide" name="cpwd" value="input" nullmsg="notnull" datatype="*6-16" errormsg="6-16digit！" />
+        </div>
+        <div id="code">
+          <label>Captcha：</label>
+          <input type="text" id="sec_code_hide" name="code"  value="input" nullmsg="notnull！" datatype="*4-4" errormsg="4digit！" />
+          <img src="{% static 'ed4all/login/images/captcha.jpg' %}" title="change alt="picture/> </div>
+        <div id="remember">
+          <input type="checkbox" name="remember">
+          <label>remember password</label>
+        </div>
+        <div id="login">
+          <button type="submit">login</button>
+        </div>
+      </form>
+    </div>
+     <!-- -->
+  </div>
+</div>
+<div class="bottom">©2017  <a href="javascript:;" target="_blank">Education4</a> <span></span><img width="13" height="16" src="{% static 'ed4all/login/images/copy_rignt_24.png' %}" /></div>
+<div class="screenbg">
+  <ul>
+    <li><a href="javascript:;"><img src="{% static 'ed4all/login/images/0.png' %}"></a></li>
+    <li><a href="javascript:;"><img src="{% static 'ed4all/login/images/1.jpg' %}"></a></li>
+    <li><a href="javascript:;"><img src="{% static 'ed4all/login/images/2.jpg' %}"></a></li>
+    <li><a href="javascript:;"><img src="{% static 'ed4all/login/images/3.jpg' %}"></a></li>
+  </ul>
+
+</div>
+</body>
+</html>
