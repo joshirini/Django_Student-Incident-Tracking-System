@@ -1,9 +1,9 @@
 # Django_Student-Incident-Tracking-System
-# Simple Django Project
+## Simple Django Project
 
 This is a simple Student Incident Tracking Systems in Django. This system is aimed for educational institutions.
 
-## Getting Started
+### Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
@@ -17,7 +17,7 @@ What things you need to install the software and how to install them
 One can download Python from here: https://www.python.org/downloads/
 
 
-## Running the demo
+### Running the demo
 
 For Mac Users:
 
